@@ -136,11 +136,12 @@ func main() {
 
 	TPMInterface, err = tpm.NewTPM()
 	if err != nil {
-		log.Fatal("Can't open TPM interface: " + err.Error())
+		log.Print("Can't open TPM interface: " + err.Error())
 	}
-	defer TPMInterface.Close()
-
-	TPMSpecVersion = TPMInterface.Info().Specification
+	if err == nil {
+		defer TPMInterface.Close()
+		TPMSpecVersion = TPMInterface.Info().Specification
+	}
 
 	switch cmd {
 	case "status":

@@ -348,6 +348,8 @@ func EventlogDump() error {
 		TPMSpecVersion = tpm.TPM12
 	} else if *eventlogDumpTPMSpec2 {
 		TPMSpecVersion = tpm.TPM20
+	} else {
+		TPMSpecVersion = tpm.TPM20 // temp hack
 	}
 
 	tcpaLog, err := tpm.ParseLog(firmware, TPMSpecVersion)
